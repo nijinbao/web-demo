@@ -1,0 +1,171 @@
+/* 版心的公共类container */
+.container {
+  width: 1240px;
+  margin: 0 auto;
+
+}
+/* 快捷菜单模块 xtx-shortcut*/
+.xtx-shortcut {
+  height: 52px;
+  background-color: #333;
+
+}
+.xtx-shortcut ul>li {
+  float: left;
+  line-height: 52px;
+  color: #666;
+}
+.xtx-shortcut ul a {
+margin: 0 14px;
+font-family: PingFangSC-Regular;
+	font-size: 14px;
+	color: #dcdcdc;
+}
+.xtx-shortcut ul>li:last-child>a {
+  margin-right: 0;
+}
+.xtx-shortcut ul>li:last-child>a::before {
+content: '';
+display: inline-block;
+width: 11px;
+height: 16px;
+margin-right: 8px;
+margin-top: -3px;
+vertical-align: middle;
+background: url("../images/sprites.png") -160px -70px;
+}
+/* 主导航模块开始 */
+.xtx-main-nav {
+  height: 130px;
+  padding-top: 30px;
+  /* 怪异盒模型 */
+  box-sizing: border-box;
+}
+.logo {
+  width: 207px;
+	height: 70px;
+  margin-left: 25px;
+  }
+.logo>a {
+  display: block;
+  width: 207px;
+  height: 70px;
+background: url("../images/logo.png")  no-repeat;
+background-size: 207px 70px;
+}
+.xtx-main-nav ul>li{
+  height: 70px;
+  line-height: 70px;
+  float: left;
+  margin-right: 48px;
+}
+.xtx-main-nav ul>li:first-child {
+  margin-left: 40px;
+}
+.xtx-main-nav ul>li>a:hover {
+color:#27ba9b;
+padding-bottom: 8px;
+border-bottom: 1px solid #27ba9b;
+}
+.search {
+  width: 172px;
+  height: 30px;
+  margin-top: 24px;
+  margin-left: 34px;
+  position: relative;
+}
+/* input type="search"默认开启怪异盒模型 */
+.search input {
+  width: 172px;
+  height: 30px;
+  border-bottom: 2px solid #e7e7e7;
+  padding-left: 31px;
+
+}
+.xtx-main-nav .search::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 5px;
+  width: 18px;
+  height: 18px;
+  background: url("../images/sprites.png") -80px -70px;
+}
+.xtx-main-nav .cart {
+  width: 23px;
+  height: 23px;
+  margin-top: 28px;
+  margin-left: 15px;
+  background: url("../images/sprites.png") -120px -70px;
+  position: relative;
+}
+.xtx-main-nav .cart>span {
+  width: 20px;
+  height: 15px;
+  background-color: #e26237;
+  position: absolute;
+  top: -5px;
+  left: 15px;
+  text-align: center;
+  line-height: 15px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #fff;
+
+}
+/* 底部模块开始 */
+.xtx-service {
+  height: 172px;
+  background-color: #333;
+}
+.xtx-service .container {
+  width: 1393px;
+  height: 172px;
+  border-bottom: 1px solid #434343;
+}
+.xtx-service .container a {
+  width: 33.33%;
+  height: 172px;
+  float: left;
+  text-align: center;
+  line-height: 172px;
+  font-size: 28px;
+  color: #fff;
+}
+.xtx-service .container a:nth-child(1)::before,.xtx-service .container a:nth-child(2)::before ,.xtx-service .container a:nth-child(3)::before  {
+  content: '';
+  width: 58px;
+  height: 58px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 19px;
+}
+.xtx-service .container a:nth-child(1)::before {
+  background: url("../images/sprites.png") 0 0;
+}
+.xtx-service .container a:nth-child(2)::before  {
+  background: url("../images/sprites.png") -65px 0;
+}
+.xtx-service .container a:nth-child(3)::before {
+  background: url("../images/sprites.png") -131px 0;
+}
+/* 版权模块开始 */
+.xtx-copyright {
+  height: 168px;
+  background-color: #333;
+}
+.xtx-copyright .container {
+  height: 168px;
+  padding-top: 38px;
+box-sizing: border-box;
+}
+.xtx-copyright .container p {
+  text-align: center;
+  font-size: 14px;
+}
+.xtx-copyright .container p a{
+  color: #999;
+}
+.xtx-copyright .container p:first-child {
+  height: 34px;
+}

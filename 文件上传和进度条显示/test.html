@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./lib/bootstrap.css">
+  <script src="./lib/jquery.js"></script>
+</head>
+<body>
+<!-- 上传图片 -->
+<input type="file" id="file"><br>
+<button id="btn">点击上传图片</button><br>
+<div class="progress" style="width: 500px;margin:30px 10px">
+  <div class="progress-bar"  style="width: 0%; " id="progress">
+    0%
+  </div>
+</div>
+<img src="" alt="" width="800" id="img">
+<script>
+  // 上传图片 点击上传图片 将图片数据作为请求体数据发送到服务器，服务器给出响应
+  // 获取dom元素
+  let btn=document.querySelector("#btn");
+  let img=document.querySelector("#img");
+  // 给btn绑定事件判断文件是否上传
+  btn.addEventListener("click",function(){
+    // file对象一定要注意在点击上传之后获取，不然获取到的就是一个空的对象
+  let files1=document.querySelector("#file")
+    if(files1.files.length<=0){
+      return alert('请上传文件!')
+    }else {
+      let fd=new FormData();
+      fd.append("avatar",files1.files[0]);
+      let xhr=new XMLHttpRequest();
+      // 监听文件的上传事件
+      xhr.upload.onprogress=function(e){
+        // 判断文件可计算长度
+        if(e.lengthComputable){
+          let progressPercent=Math.ceil((e.loaded/e.total)*100);
+          $("#progress").attr("style","width:"+progressPercent+"%").html(progressPercent+"%");
+         
+        }
+      }
+      // 监听进度条上传成功的事件
+      xhr.upload.onload=function(){
+        $("#progress").removeClass().addClass("progress-bar progress-bar-success")
+      }
+      xhr.open("POST","http://www.liulongbin.top:3006/api/upload/avatar");
+      xhr.send(fd);
+      // 监听ajax网络请求的状态
+      xhr.onreadystatechange=function(){
+        if(xhr.status==200 && xhr.readyState==4){
+          // 网络请求发送成功
+        // 服务器返回的数据是JSON格式的字符串我们需要将其转换为对象才能正常使用
+        let data=JSON.parse(xhr.responseText);
+          // 判断文件是否上传成功
+          if(data.status!==200){
+            return alert(data.message);
+          }else {
+            img.src="http://www.liulongbin.top:3006"+data.url
+          }
+
+        }
+      }
+
+    }
+  })
+</script>
+</body>
+</html>

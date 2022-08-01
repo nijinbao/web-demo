@@ -1,0 +1,120 @@
+@import "./base.less";
+@import "./normalize.less";
+@rootSize:37.5rem;
+body {
+    background-color: #F0F0F0 ;
+}
+.banner {
+    width: (375/@rootSize);
+    height: (160/@rootSize);
+}
+.bg {
+    background-color: #fff ;
+}
+.content {
+padding-bottom: (50/@rootSize);    
+.title {
+    font-size: (14/@rootSize);
+    color: #3c3c3c;
+    font-weight: normal;
+    padding: (10/@rootSize) 0 (10/@rootSize) (15/@rootSize);
+}
+.item {
+    margin-bottom: (10/@rootSize);
+    
+.img {
+    display: block;
+    height: (160/@rootSize);
+    position: relative;
+    .serve {
+
+        width: (68/@rootSize);
+        height: (29/@rootSize);
+        background: url("../images/status_active.png") no-repeat ;
+        background-size: contain;
+        position: absolute;
+        top: (-6/@rootSize);
+        left: (15/@rootSize);
+        text-align: center;
+        line-height: (25/@rootSize);
+
+        font-size: (12/@rootSize);
+        font-weight: normal;
+        color:#fff;
+
+    }
+    .end {
+        background: url("../images/status_default.png") no-repeat ;
+        background-size: contain;
+        
+    }
+    .iconfont {
+        position: absolute;
+        top: (15/@rootSize);
+        right: (18/@rootSize);
+        font-size: (24/@rootSize);
+        color: #fff;
+    }
+}
+.text {
+    padding:(8/@rootSize) (15/@rootSize) (10/@rootSize);
+  .des {
+    display: flex;
+    justify-content: space-between;
+    h4 {
+        width: (295/@rootSize);
+        height: (43/@rootSize);
+        font-size: (15/@rootSize);
+        font-weight: normal;
+        color: #3C3C3C ;
+    }
+    p {
+        font-size: (15/@rootSize);
+         color: #FE6249 ; 
+    }
+  }
+
+}
+.info {
+    display: flex;
+    color: #B4B4B4 ;
+    font-size: (11/@rootSize);
+    margin-top: (10/@rootSize);
+    .num {
+        margin-right: (15/@rootSize);
+          i {
+        margin-right: (5/@rootSize);
+    }
+    }
+}
+}
+}
+
+// 底部
+.footer {
+width: (375/@rootSize);
+height: (50/@rootSize);
+background-color: #FECA49 ;
+position:fixed;
+left: 0;
+bottom: 0;
+display: flex;
+justify-content: space-around;
+overflow: hidden;
+a{
+    margin-top:(4/@rootSize);
+    color: #D78B09 ;
+    .iconfont {
+        font-size: (23/@rootSize);
+         }
+    p {
+        font-size: (11/@rootSize);
+        margin-top:(2/@rootSize);
+    
+    }
+    &.current {
+        color: #fff;
+    }
+    
+}
+}

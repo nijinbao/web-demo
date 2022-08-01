@@ -1,0 +1,73 @@
+.container {
+width: 1226px;
+height: 460px;
+margin: 50px auto;
+position: relative;
+overflow: hidden;
+
+}
+.container .liList {
+  width: 600%;
+  height: 460px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.liList>li {
+  float: left;
+}
+.container img {
+  width: 1226px;
+  height: 460px;
+  
+
+}
+.prev {
+  left: 234px;
+  background:url("./img/arrow-prev.png") no-repeat;
+}
+.next {
+right: 0;
+ background:url("./img/arrow-next.png") no-repeat;
+
+}
+.prev,.next {
+  display: block;
+  width: 41px;
+  height: 70px;
+  position: absolute;
+  top: 50%;
+ transform: translateY(-50%);
+ cursor: pointer;
+ z-index: 9;
+ background-position: center center;
+}
+.prev:hover,.next:hover {
+  color: #fff;
+  background-color: #666;
+}
+.circleList {
+  width: 90px;
+  height: 21px;
+  position: absolute;
+  right: 30px;
+  bottom: 20px;
+}
+
+.circleList li{
+  margin: 0 4px;
+  float: left ;
+}
+
+.circleList a {
+  display: inline-block;
+  width:6px;
+  height: 6px;
+  border-radius: 50%;
+background-color:#333 ;
+  border: 2px solid #757575;
+  
+}
+.circleList .active {
+    background-color: #fff;
+}

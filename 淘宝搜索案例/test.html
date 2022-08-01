@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <!-- 导入页面的基本样式 -->
+  <link rel="stylesheet" href="./css/search.css" />
+  <!-- 导入jQuery -->
+  <script src="./lib/jquery.js"></script>
+  <!-- 导入模版引擎 -->
+  <script src="./lib/template-web.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Logo -->
+    <img src="./images/taobao_logo.png" alt="" class="logo" />
+
+    <div class="box">
+      <!-- tab 栏 -->
+      <div class="tabs">
+        <div class="tab-active">宝贝</div>
+        <div>店铺</div>
+      </div>
+      <!-- 搜索区域（搜索框和搜索按钮） -->
+      <div class="search-box">
+        <input id="ipt" type="text" class="ipt" placeholder="请输入要搜索的内容" /><button class="btnSearch">
+          搜索
+        </button>
+      </div>
+      <!-- 定义数据渲染的容器 -->
+      <div id="suggest-container">
+
+      </div>
+    </div>
+  </div>
+<script>
+$(function(){
+  // 获取ipt对象
+let ipt=$("#ipt");
+// 定义定时器
+let timer=null;
+// 定义一个cacheObj对象存储用户输入的内容和查询到的内容
+let cacheObj={};
+// 定义防抖函数
+function debounceSearch(kw){
+  // 首先清空定时器
+  clearTimeout(timer);
+  // 开启定时器
+  timer=setTimeout(function(){
+    getSuggestList(kw)
+  },500)
+}
+// 给ipt对象绑定键盘弹起事件
+ipt.on("keyup",function(){
+// 获取ipt对象的value值
+let val=ipt.val();
+
+// 首先判断val是否为空
+if(val.length<=0){
+  // 输入框内文本内容为空将上一次查询的内容清空同时 将容器隐藏
+return $("#suggest-container ").empty().hide();
+}else {
+  // 在发送JSONP请求之前首先检查缓存对象中是否存有查询内容
+  if(val in cacheObj){
+    return renderSuggestList(cacheObj[val.trim()])
+  }
+  // 发送JSONP请求
+  debounceSearch(val);
+}
+ 
+})
+function getSuggestList(val){
+$.ajax({
+type:"GET",
+url:"https://suggest.taobao.com/sug?q="+val,
+// 发送jsonp请求一定要加上datatype:jsonp
+dataType:"jsonp",
+success:function(res){
+  cacheObj[val.trim()]=res;
+  renderSuggestList(res)
+}
+})
+}
+function renderSuggestList(res){
+  // 在进行渲染之前首先判断res是否为空
+  if(res.result.length===0){
+ 
+    return $("#suggest-container").empty().hide()
+  }
+    // 将上一次渲染的内容清空，重新查询渲染
+    $("#suggest-container").empty().show()
+//  调用template函数将数据和模版结构进行合并
+let htmlStr=template("tmp",res);
+// 将合并之后的模版字符串渲染到页面对应的容器之中
+$("#suggest-container").html(htmlStr)
+}
+})
+</script>
+<!-- 定义模版结构
+ -->
+  <script type="text/html" id="tmp">
+    {{each result}}
+    <div class="list-item">{{$value[0]}}</div>
+    {{/each}}
+  </script>
+</body>
+
+</html>
